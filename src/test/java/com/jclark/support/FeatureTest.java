@@ -1,4 +1,4 @@
-package com.jclark.features;
+package com.jclark.support;
 
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.core.Fluent;
