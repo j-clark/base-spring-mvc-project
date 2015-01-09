@@ -248,6 +248,9 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.0.6.v20130930</version>
 				<configuration>
+					<httpConnector>
+						<port>8080</port>
+					</httpConnector>
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>
@@ -279,6 +282,9 @@
 							<goal>start</goal>
 						</goals>
 						<configuration>
+							<httpConnector>
+								<port>9080</port>
+							</httpConnector>
 							<scanIntervalSeconds>0</scanIntervalSeconds>
 							<daemon>true</daemon>
 						</configuration>
