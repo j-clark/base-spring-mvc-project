@@ -7,7 +7,7 @@ public abstract class FeatureTest extends FluentTest {
 
   @Override
   public Fluent goTo(String path) {
-    String baseUrl = System.getProperty("baseUrl", "http://localhost:9081");
+    String baseUrl = System.getProperty("baseUrl", "http://localhost:9080");
     return super.goTo(baseUrl + path);
   }
 }
