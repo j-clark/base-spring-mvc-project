@@ -1,0 +1,23 @@
+{
+  "name": "base-spring-mvc-project",
+  "version": "1.0.0",
+  "description": "* Project setup for Spring 3.2.4",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-clark/base-spring-mvc-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j-clark/base-spring-mvc-project/issues"
+  },
+  "homepage": "https://github.com/j-clark/base-spring-mvc-project"
+}
