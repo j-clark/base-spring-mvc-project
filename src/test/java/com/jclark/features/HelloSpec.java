@@ -10,10 +10,7 @@ public class HelloSpec extends FluentTest {
 
   @Test
   public void helloSpec() {
-
-//    System.
-
-    goTo("http://localhost:8080/hello");
+    goTo("http://localhost:9080/hello");
     assertThat(pageSource(), containsString("hello"));
   }
 }
