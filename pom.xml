@@ -13,6 +13,7 @@
 		<org.springframework-version>3.2.4.RELEASE</org.springframework-version>
 		<org.springframework.security-version>3.2.0.RELEASE</org.springframework.security-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
+		<org.log4j-version>1.2.16</org.log4j-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -55,7 +56,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>${org.log4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -207,19 +208,27 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12</version>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.18.1</version>
 				<configuration>
 					<includes>
-						<include>**/*Test.java</include>
 						<include>**/*Spec.java</include>
 					</includes>
-					<excludes>
-						<exclude>**/Abstract*.java</exclude>
-					</excludes>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<argLine>-Xmx512m</argLine>
 				</configuration>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -244,18 +253,34 @@
 					</webApp>
 				</configuration>
 
+				<dependencies>
+					<dependency>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+						<version>${org.log4j-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+						<version>${org.slf4j-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+						<version>${org.slf4j-version}</version>
+					</dependency>
+				</dependencies>
+
 				<executions>
 					<execution>
 						<id>start-jetty</id>
 						<phase>pre-integration-test</phase>
 						<goals>
-							<goal>run-forked</goal>
+							<goal>start</goal>
 						</goals>
 						<configuration>
-							<stopPort>9895</stopPort>
-							<stopKey>noYouStop</stopKey>
-							<waitForChild>false</waitForChild>
-							<maxStartupLines>100</maxStartupLines>
+							<scanIntervalSeconds>0</scanIntervalSeconds>
+							<daemon>true</daemon>
 						</configuration>
 					</execution>
 					<execution>
@@ -264,6 +289,10 @@
 						<goals>
 							<goal>stop</goal>
 						</goals>
+						<configuration>
+							<stopKey>stopItAlready</stopKey>
+							<stopPort>9099</stopPort>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
