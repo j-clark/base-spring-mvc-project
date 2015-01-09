@@ -16,4 +16,9 @@ public class HelloController {
   public @ResponseBody String hello() {
     return helloService.sayHello();
   }
+
+  @RequestMapping("/")
+  public String root() {
+    return "index";
+  }
 }

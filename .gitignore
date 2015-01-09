@@ -10,3 +10,4 @@ src/main/webapp/META-INF
 
 node_modules/
 bower_components/
+src/main/webapp/resources/vendor/
